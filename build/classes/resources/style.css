@@ -1,0 +1,98 @@
+#backgroundPane {
+    -fx-background-color: linear-gradient(to bottom, #FFFEFF 50%, #D7FFFE 100%);
+}
+
+.tab-pane *.tab-header-area *.tab-header-background {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+  -fx-background-color: transparent;
+}
+
+.tab-pane {
+  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+  -fx-tab-min-width: 100;
+  -fx-tab-max-width: 120;
+  -fx-tab-min-height: 50;
+  -fx-tab-max-height: 50;
+}
+
+.tab {
+  -fx-background-color: #00332f;
+  -fx-background-graphic: url("http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/24/Apps-preferences-system-login-icon.png");
+  -fx-opacity: 0.7;
+}
+
+#loginContent {
+    -fx-background-color: #00998d;
+    -fx-min-width: 450;
+    -fx-min-height: 550;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+}
+
+#hub {
+    -fx-background-color: transparent;
+    -fx-min-width: 450;
+    -fx-min-height: 300;
+}
+
+#loginButton {
+    -fx-background-color: #D7FFFE;
+    -fx-text-fill: #00998d;
+    -fx-min-width: 90;
+    -fx-min-height: 90;
+    -fx-graphic: url("../sprites/login-button.png");
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+    -fx-opacity: 1.0;
+    -fx-background-radius:0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 3 3 0;
+    -fx-background-insets: 0;
+}
+
+#administratorButton {
+    -fx-background-color: #00332f;
+    -fx-graphic: url("http://icons.iconarchive.com/icons/froyoshark/enkel/64/iTerm-icon.png");
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+    -fx-min-width: 70;
+    -fx-min-height: 70;
+    -fx-background-radius:0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 3 3 0;
+    -fx-background-insets: 0;
+}
+
+#dermatologistButton {
+    -fx-background-color: #00332f;
+    -fx-graphic: url("http://icons.iconarchive.com/icons/icons8/windows-8/64/Users-Administrator-2-icon.png");
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+    -fx-min-width: 70;
+    -fx-min-height: 70;
+    -fx-background-radius:0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 3 3 0;
+    -fx-background-insets: 0;
+}
+
+#configurationButton {
+    -fx-background-color: #00332f;
+    -fx-graphic: url("http://icons.iconarchive.com/icons/sinisa91g/supernova/64/Settings-icon.png");
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+    -fx-min-width: 70;
+    -fx-min-height: 70;
+    -fx-background-radius:0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 3 3 0;
+    -fx-background-insets: 0;
+}
+
+#exitButton {
+    -fx-background-color: #00332f;
+    -fx-graphic: url("http://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62991-door-icon.png");
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+    -fx-min-width: 50;
+    -fx-min-height: 50;
+    -fx-opacity: 0.4;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 3 3 0;
+    -fx-background-insets: 0;
+}
