@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller.utilities;
 
+import javafx.animation.PathTransition;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Line;
+import javafx.util.Duration;
 
-/**
- *
- * @author bkdestroy
- */
 public final class FXUtil {
     
     public FXUtil() {}
@@ -46,5 +41,28 @@ public final class FXUtil {
             }
         });
     }
-     
+    
+     //Crea linea con coord. de punto inicial y punto de llegada.
+    public static Line spawnLine(double startX, double startY, double endX, double endY) {
+        
+        Line newLine = new Line();
+        newLine.setStartX(startX);
+        newLine.setStartY(startY);     
+        newLine.setEndX(endX);
+        newLine.setEndY(endY);
+        
+        return newLine;
+    }
+    
+    //Crea transición para el botón ingresado como parametro y siguiendo el path, con duración y delay.
+    public static PathTransition spawnTransition(Button node, Line path, double duration, double delay) {
+        
+        PathTransition newTransition = new PathTransition();
+        newTransition.setNode(node);
+        newTransition.setDelay(Duration.seconds(delay));
+        newTransition.setDuration(Duration.seconds(duration));
+        newTransition.setPath(path);
+        
+        return newTransition;
+    }
 }

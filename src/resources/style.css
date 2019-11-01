@@ -1,33 +1,26 @@
+/* Fondo */
 #backgroundPane {
     -fx-background-color: linear-gradient(to bottom, #FFFEFF 50%, #D7FFFE 100%);
 }
 
-.tab-pane *.tab-header-area *.tab-header-background {
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
-  -fx-background-color: transparent;
+#mainContentPane {
+    -fx-background-color: transparent;
 }
 
-.tab-pane {
-  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
-  -fx-tab-min-width: 100;
-  -fx-tab-max-width: 120;
-  -fx-tab-min-height: 50;
-  -fx-tab-max-height: 50;
+#unblurredPane {
+    -fx-background-color: transparent;
 }
 
-.tab {
-  -fx-background-color: #00332f;
-  -fx-background-graphic: url("http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/24/Apps-preferences-system-login-icon.png");
-  -fx-opacity: 0.7;
-}
-
+/* Cotenido de panel inicio de sesión*/
 #loginContent {
-    -fx-background-color: #00998d;
-    -fx-min-width: 450;
-    -fx-min-height: 550;
+    -fx-background-color: #D7FFFE;
+    -fx-opacity: 0.7;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+    -fx-min-width: 1000;
+    -fx-min-height: 600;
 }
 
+/* HUB DESIGN */
 #hub {
     -fx-background-color: transparent;
     -fx-min-width: 450;
@@ -42,7 +35,7 @@
     -fx-graphic: url("../sprites/login-button.png");
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
     -fx-opacity: 1.0;
-    -fx-background-radius:0;
+    -fx-background-radius: 0;
     -fx-border-color: transparent;
     -fx-border-width: 0 3 3 0;
     -fx-background-insets: 0;
@@ -54,7 +47,7 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
     -fx-min-width: 70;
     -fx-min-height: 70;
-    -fx-background-radius:0;
+    -fx-background-radius: 0;
     -fx-border-color: transparent;
     -fx-border-width: 0 3 3 0;
     -fx-background-insets: 0;
@@ -66,7 +59,7 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
     -fx-min-width: 70;
     -fx-min-height: 70;
-    -fx-background-radius:0;
+    -fx-background-radius: 0;
     -fx-border-color: transparent;
     -fx-border-width: 0 3 3 0;
     -fx-background-insets: 0;
@@ -78,7 +71,7 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
     -fx-min-width: 70;
     -fx-min-height: 70;
-    -fx-background-radius:0;
+    -fx-background-radius: 0;
     -fx-border-color: transparent;
     -fx-border-width: 0 3 3 0;
     -fx-background-insets: 0;
@@ -95,4 +88,135 @@
     -fx-border-color: transparent;
     -fx-border-width: 0 3 3 0;
     -fx-background-insets: 0;
+}
+/* END OF HUB DESIGN */
+
+/* LOGIN PANEL DESIGN */
+
+#titleLabel {
+    -fx-text-alignment: center;
+    -fx-text-fill: #00332f;
+    -fx-min-width: 450;
+    -fx-font-size: 15pt;
+    -fx-padding: 15;
+}
+
+#errorLabel {
+    -fx-text-fill: #000000;
+    -fx-min-width: 150;
+    -fx-min-height: 20;
+}
+
+.text-field {
+    -fx-background-color: #00332f;
+    -fx-text-fill: #eef5f7;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+    -fx-background-radius: 0;
+    -fx-min-width: 300;
+    -fx-min-height: 20;
+    -fx-opacity: 0.4;
+}
+
+.text-field:focused {
+    -fx-prompt-text-fill: #eef5f7;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-opacity: 1;
+}
+
+.text-field:hover {
+    -fx-background-color: #325b58;
+    -fx-prompt-text-fill: #eef5f7;
+    -fx-opacity: 1;
+}
+
+.check-box .label{
+    -fx-text-fill: #00332f;
+}
+
+.check-box .box{
+    -fx-background-color: #00332f;
+    -fx-background-radius: 0;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.3), 2, 0.4, 2, 2);
+    -fx-padding: 2px;
+    -fx-opacity: 0.4;
+}
+
+.check-box:selected .box{
+    -fx-opacity: 1;
+}
+
+.check-box:hover .box{
+    -fx-opacity: 1;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #eef5f7;
+}
+
+#submitButton {
+    -fx-background-color: #D7FFFE;
+    -fx-text-fill: #00998d;
+    -fx-graphic: url("../sprites/login-button.png");
+    -fx-background-size: 30px;
+    -fx-background-repeat: no-repeat;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 3 3 0;
+    -fx-background-insets: 0;
+}
+
+#submitButton:hover {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-text-fill: #eef5f7;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-background-color: #00332f;
+    -fx-opacity: 1;
+}
+
+#stayButton {
+    -fx-background-color: #D7FFFE;
+    -fx-text-fill: #00998d;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 3 3 0;
+    -fx-background-insets: 0;
+    -fx-min-width: 100;
+    -fx-min-height: 30;
+}
+
+#stayButton:hover {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-background-color: #00332f;
+    -fx-opacity: 0.7;
+}
+
+#leaveButton {
+    -fx-background-color: #D7FFFE;
+    -fx-text-fill: #00998d;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.4, 3, 3);
+    -fx-background-radius:0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 3 3 0;
+    -fx-background-insets: 0;
+    -fx-min-width: 100;
+    -fx-min-height: 30;
+}
+
+#leaveButton:hover {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-background-color: #00332f;
+    -fx-opacity: 0.7;
+}
+
+#exitBox {
+    -fx-background-color: #D7FFFE;
+    -fx-min-width: 400;
+    -fx-min-height: 100;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,1), 10, 0.8, 3, 3);
+    -fx-opacity: 2.0;
 }

@@ -1,9 +1,11 @@
-package controller.utilities;
+package view;
 
+import controller.Program;
+import controller.utilities.FXUtil;
 import javafx.animation.PathTransition;
 import javafx.animation.ScaleTransition;
-import javafx.application.Platform;
 import javafx.scene.control.Button;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
@@ -62,36 +64,50 @@ public class HubPanel {
         configurationButton.setLayoutX(225);
         configurationButton.setLayoutY(120);
         
-        //Permite mover hub
-        hub.setOnMouseDragged(event -> {
-            hub.setLayoutX(event.getSceneX());
-            hub.setLayoutY(event.getSceneY());
-        });
-        
         /* *** Controlador botón de inicio de sesión *** */
         loginButton.setOnAction(event -> {
             
             //Realiza transición de botón de acuerdo a estado de sesión.
             if (!this.getIsExtended()) {
                 
-                LoginPanel loginPanel = new LoginPanel();
-                
                 //Animación
                 hubExtendAction();
                 
-                //Acción
-                loginPanel.insertInto(container, hub.getLayoutX() + 225, hub.getLayoutY() + 220);
+                //Accion principal: spawnea panel inicio de sesión
             }
             else {
                 
                 //Animación
                 hubshrinkAction();
+                
+                //Accion principal: cierra panel inicio de sesión
             }
         });
         
         //Boton salir
-        exitButton.setOnAction(event -> { 
-           Platform.exit(); 
+        exitButton.setOnAction(event -> {
+            
+            //Cierra hub en caso de estar abierto
+            if (this.getIsExtended() ) {
+                this.hubshrinkAction();
+            }
+            
+            //Efecto blur
+            GaussianBlur gaussianBlur = new GaussianBlur();       
+            gaussianBlur.setRadius(10.5);
+            
+            //Añade efecto
+            Program.mainContent.setEffect(gaussianBlur);
+            
+            //Cuadro de salida customizado
+            ExitAlert exitAlert = new ExitAlert();
+            exitAlert.insertInto(Program.unblurredPane, Program.width/2-200, Program.height/2-100);
+            
+            //Configura panel superior de efectos
+            Program.background.getChildren().add(1, Program.unblurredPane);
+            Program.unblurredPane.setStyle("-fx-background-color: #000b09; -fx-opacity: 0.8");
+            
+            //Platform.exit(); 
         });
     }
     
@@ -113,15 +129,18 @@ public class HubPanel {
         // EVENTO: Aumenta tamaño botón y desencadena siguiente evento.
         loginButtonTransition.setOnFinished(event1 -> {
             
+            //Invoca panel inicio de sesión
+            Program.loginPanel.hideLoginPanel(false);
+            
             //Cambia color de botón login
-            loginButton.setStyle("-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.5), 10, 0.8, 3, 3);");
+            loginButton.setStyle("-fx-effect: dropshadow( three-pass-box , rgba(2,58,48,0.5), 10, 0.6, 3, 3);");
             
             //Invoca botón de panel administrador
             administratorButton.setVisible(true);
             
             // Trayecto botón panel administrador
-            Line administratorLine = spawnLine(administratorButton.getLayoutX() - 50, 59, administratorButton.getLayoutX() + 80, 59);
-            PathTransition administratorButtonTransition = spawnTransition(administratorButton, administratorLine, 0.15, 0);
+            Line administratorLine = FXUtil.spawnLine(administratorButton.getLayoutX() - 50, 59, administratorButton.getLayoutX() + 80, 59);
+            PathTransition administratorButtonTransition = FXUtil.spawnTransition(administratorButton, administratorLine, 0.15, 0);
             
             //Evento desencadenado: desliza botón de configuración
             administratorButtonTransition.setOnFinished(event2 -> {
@@ -130,8 +149,8 @@ public class HubPanel {
                 configurationButton.setVisible(true);
                 
                 // Trayecto botón de configuración
-                Line configurationLine = spawnLine(administratorButton.getLayoutX() - 50, 39, administratorButton.getLayoutX() + 55, 39);
-                PathTransition configurationButtonTransition = spawnTransition(configurationButton, configurationLine, 0.15, 0);
+                Line configurationLine = FXUtil.spawnLine(administratorButton.getLayoutX() - 50, 39, administratorButton.getLayoutX() + 55, 39);
+                PathTransition configurationButtonTransition = FXUtil.spawnTransition(configurationButton, configurationLine, 0.15, 0);
                 
                 //Ejecuta transición
                 configurationButtonTransition.play();
@@ -154,13 +173,15 @@ public class HubPanel {
         //Marca hub como extendido
         this.setIsExtended(false);
         
+        //Desaparece panel inicio de sesión
+        Program.loginPanel.hideLoginPanel(true);
+        
         //Boton deshabilitado hasta que termine la transición
         loginButton.setDisable(true);
-         
         
         // Trayecto botón de configuración (Retroceso)
-        Line configurationLine = spawnLine(configurationButton.getTranslateX() + 40, 39, configurationButton.getTranslateX() - 60, 39);
-        PathTransition configurationButtonTransition = spawnTransition(configurationButton, configurationLine, 0.15, 0);
+        Line configurationLine = FXUtil.spawnLine(configurationButton.getTranslateX() + 40, 39, configurationButton.getTranslateX() - 60, 39);
+        PathTransition configurationButtonTransition = FXUtil.spawnTransition(configurationButton, configurationLine, 0.15, 0);
         
         // EVENTO: Lo vuelve a su posición inicial, invisible y desencadena evento.
         configurationButtonTransition.setOnFinished(event1 -> {
@@ -169,8 +190,8 @@ public class HubPanel {
             configurationButton.setVisible(false);
             
             // Trayecto botón panel administrador
-            Line administratorLine = spawnLine(administratorButton.getLayoutX() + 80, 59, administratorButton.getLayoutX() - 50, 59);
-            PathTransition administratorButtonTransition = spawnTransition(administratorButton, administratorLine, 0.15, 0);
+            Line administratorLine = FXUtil.spawnLine(administratorButton.getLayoutX() + 80, 59, administratorButton.getLayoutX() - 50, 59);
+            PathTransition administratorButtonTransition = FXUtil.spawnTransition(administratorButton, administratorLine, 0.15, 0);
             
             administratorButtonTransition.setOnFinished(event2 -> {
                 
@@ -212,30 +233,6 @@ public class HubPanel {
         
         hub.setLayoutX(x);
         hub.setLayoutY(y);
-    }
-    
-    // Crea linea con coord. de punto inicial y punto de llegada.
-    private Line spawnLine(double startX, double startY, double endX, double endY) {
-        
-        Line newLine = new Line();
-        newLine.setStartX(startX);
-        newLine.setStartY(startY);     
-        newLine.setEndX(endX);
-        newLine.setEndY(endY);
-        
-        return newLine;
-    }
-    
-    // Crea transición para el botón ingresado como parametro y siguiendo el path, con duración y delay.
-    private PathTransition spawnTransition(Button node, Line path, double duration, double delay) {
-        
-        PathTransition newTransition = new PathTransition();
-        newTransition.setNode(node);
-        newTransition.setDelay(Duration.seconds(delay));
-        newTransition.setDuration(Duration.seconds(duration));
-        newTransition.setPath(path);
-        
-        return newTransition;
     }
     
     public boolean getIsExtended() {
@@ -298,4 +295,13 @@ public class HubPanel {
         exitButton.setLayoutX(x);
         exitButton.setLayoutY(y);
     }
+    
+    public double getHubX() {
+        return hub.getLayoutX();
+    }
+    
+    public double getHubY() {
+        return hub.getLayoutY();
+    }
+
 }
